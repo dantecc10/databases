@@ -26,3 +26,10 @@
 | Construcción de Vistas | | 10 puntos |
 | Implementación y Justificación de índices | | 5 puntos |
 | Consultas avanzadas | | 10 puntos |
+
+### Características de los Entregables
+- Portada
+- Índice del contenido
+- Introducción (Redacción Propia)
+- Contenido
+- Conclusión del documento (Redacción Propia)
