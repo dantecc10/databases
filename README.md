@@ -13,6 +13,38 @@
 | Actividades de clase | | 5% |
 | Proyecto | Es obligatorio para aprobar la materia | 65% |
 
+## Objetivo
+### Contenido
+#### Unidad 1: Conceptos Básicos de Bases de Datos
+- Concepto de Bases de Datos
+- Funciones de un SGBD
+- Usuarios de un SGBD: DBA, desarrolladores, usuarios finales
+- Componentes de un SGBD
+- Arquitectura de Niveles de un  SGBD
+
+#### Unidad 2: Modelado de datos
+- Modelado de datos y concepto de metadatos
+- lógicos basados en objetos
+#### Unidad 3: Modelo Entidad-Relación
+- Conceptos básicos
+- Entidad-relación
+- Cardinalidad, correlación de datos
+Representaciones gráficas
+Aplicaciones
+Normalización: 1NF, 2NF, 3NF, BCNF, 4FN
+#### UNidad 4: Aplicaciones de bases de datos
+- Lenguajes de manipulación de datos
+Diseño de la aplicación de bases de datos
+Funciones
+
+### Tecnologías
+- SQL Server (Motor de base de datos "SMSS")
+- MySQL
+
+Se recomienda descargar la versión SQL Enterprise Dev.
+
+[Descargar para Windows](https://www.microsoft.com/en-us/sql-server/sql-server-downloads "Descarga desde sitio oficial")
+[Descargar para Linux](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-ver16&culture=en-us&country=us "Descarga desde sitio oficial")
 
 ## Proyecto
 ### Puntos a evaluar
