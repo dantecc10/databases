@@ -6,7 +6,7 @@
 
 ## Criterios de evaluación
 | Concepto | Comentarios | Porcentaje |
-|---|---|---|
+|:---:|---|---|
 | Evaluación 1 | (Examen y/o Trabajo y/o Programas) | 10% |
 | Evaluación 2 | (Examen y/o Trabajo y/o Programas) | 10% |
 | Evaluación 3 | (Examen y/o Trabajo y/o Programas) | 10% |
