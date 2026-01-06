@@ -43,6 +43,8 @@ Funciones
 
 Se recomienda descargar la versión SQL Enterprise Dev, así como XAMPP para MySQL.
 
+Se recomienda instalar Docker en Linux y usar SQL Server como componente.
+
 - [Descargar para Windows](https://www.microsoft.com/en-us/sql-server/sql-server-downloads "Descarga desde sitio oficial")
 - [Descargar para Linux](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-ver16&culture=en-us&country=us "Descarga desde sitio oficial")
 
