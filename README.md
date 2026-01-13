@@ -95,3 +95,5 @@ Habremos de mostrar un menú con las opciones:
 
 
 Alta debería llevar a ingresar datos como nombre, apellido materno, paterno, fecha de nacimiento y dirección.
+
+Esta actividad se revisará del 9 al 13 de febrero.
