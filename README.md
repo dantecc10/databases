@@ -67,3 +67,13 @@ Se recomienda instalar Docker en Linux y usar SQL Server como componente.
 - Introducción (Redacción Propia)
 - Contenido
 - Conclusión del documento (Redacción Propia)
+
+### Sesiones
+#### Sesión lunes 12 de enero
+
+Un sistema gestor de bases de datos (*SGBD*) es el intermediario entre el usuario y la base de datos.
+
+La gran diferencia entre las bases de datos SQL y NoSQL es que las primeras se basan en formatos estandarizados y ordenadas (tablas), mientras que las NoSQL se sirven de nodos (listas ligadas).
+##### ¿Qué es una base de datos?
+Una **base de datos** es una colección organizada y estructurada de datos que pertenencen a un mismo contexto y que están almacenados electrónicamente en un sistema de computadora. Son el producto de la necesidad humana de almacenar información.
+
