@@ -77,3 +77,21 @@ La gran diferencia entre las bases de datos SQL y NoSQL es que las primeras se b
 ##### ¿Qué es una base de datos?
 Una **base de datos** es una colección organizada y estructurada de datos que pertenencen a un mismo contexto y que están almacenados electrónicamente en un sistema de computadora. Son el producto de la necesidad humana de almacenar información.
 
+Antes de existir las bases de datos se trabajaba con sistemas de archivos descentralizados.
+
+Para la primera evaluación realizaremos un programa cuya fecha de entrega será el jueves.
+
+Hacer un programa en el lenguaje que nosotros consideremos con línea de comandos.
+
+Hacer un sistema de control de empleados.
+
+Habremos de mostrar un menú con las opciones:
+
+1. Alta
+2. Baja
+3. Consulta
+4. Modificación
+5. Salir
+
+
+Alta debería llevar a ingresar datos como nombre, apellido materno, paterno, fecha de nacimiento y dirección.
