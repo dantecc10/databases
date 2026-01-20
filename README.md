@@ -127,3 +127,12 @@ CREATE DATABASE ESCUELA.DBO.ALUMNOS (
 );
 
 ```
+Si quisiéramos agregar un campo, hay dos formas:
+- Borrar la tabla y crear nuevamente incluyendo el nuevo campo.
+- Alterar la estructura.
+
+``` mysql
+
+ALTER TABLE ESCUELA.DBO.ALUMNOS ADD TELEFONO VARCHAR(10);
+
+```
