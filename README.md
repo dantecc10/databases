@@ -112,7 +112,7 @@ Para trabajar, requerims físicamente una base de datos en la que existirán tab
 Por ejemplo:
 
 | ID | Nombre | Matrícula |
-|:=:|:=:|:=:|
+|:-:|:-:|:-:|
 | 1 | Dante | 202320271 | 
 | 2 | Migue | 202345672 |
 
