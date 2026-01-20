@@ -136,3 +136,9 @@ Si quisiéramos agregar un campo, hay dos formas:
 ALTER TABLE ESCUELA.DBO.ALUMNOS ADD TELEFONO VARCHAR(10);
 
 ```
+
+Y para eliminar un campo:
+
+``` mysql
+ALTER TABLE ESCUELA-DBO-ALUMNOS DROP COLUMN TELEFONO;
+```
