@@ -97,3 +97,33 @@ Habremos de mostrar un menú con las opciones:
 Alta debería llevar a ingresar datos como nombre, apellido materno, paterno, fecha de nacimiento y dirección.
 
 Esta actividad se revisará del 9 al 13 de febrero.
+
+### Sesión Lunes 19 de enero de 2026
+
+Se habla de los esquemas de una base de datos, y de algunos elementos presentes en las bases de datos como:
+
+- Bases de datos
+- Funciones
+- Tablas
+- Operaciones
+
+Para trabajar, requerims físicamente una base de datos en la que existirán tablas, conformadas por columnas (campos), y filas (registros).
+
+Por ejemplo:
+
+| ID | Nombre | Matrícula |
+|:=:|:=:|:=:|
+| 1 | Dante | 202320271 | 
+| 2 | Migue | 202345672 |
+
+Por ejemplo, para crear la tabla anterior se usaría el siguiente código:
+
+``` mysql
+
+CREATE DATABASE ESCUELA.DBO.ALUMNOS (
+	ID INT,
+	NOMBRE CHAR(50),
+	MATRICULA BIGINT
+);
+
+```
