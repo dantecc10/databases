@@ -207,3 +207,7 @@ Por ejemplo, si tenemos la tabla alumnos, con los siguientes campos:
 | ID (`INT`) | NOM (`VARCHAR`) | TEL (`INT`) | DIR (`VARCHAR`) |
 |:-:|:-:|:-:|:-:|
 | -> | Todo esto | es un | registro |
+
+Las bases de datos modernas (NoSQL) usan listas ligadas y se basan en nodos; son más flexibles, pero permiten duplicados, lo cual no las hace eficiente para algunos casos.
+
+![Ejemplo de diagrama de lista ligada](https://media.geeksforgeeks.org/wp-content/uploads/20220712172013/Singlelinkedlist.png)
