@@ -142,3 +142,17 @@ Y para eliminar un campo:
 ``` mysql
 ALTER TABLE ESCUELA-DBO-ALUMNOS DROP COLUMN TELEFONO;
 ```
+
+El código que se usó en la sesión anterior es:
+```mysql
+USE escuela;
+
+CREATE TABLE alumnos (
+	MATRICULA BIGINT,
+    NOMBRE VARCHAR(100)
+);
+
+INSERT INTO alumnos (MATRICULA, NOMBRE) VALUES(202320271, 'Dante Castelán Carpinteyro');
+
+SELECT * FROM alumnos;
+```
