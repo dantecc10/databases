@@ -143,7 +143,10 @@ Y para eliminar un campo:
 ALTER TABLE ESCUELA-DBO-ALUMNOS DROP COLUMN TELEFONO;
 ```
 
+### Sesión lunes 26 de enero
+
 El código que se usó en la sesión anterior es:
+
 ```mysql
 USE escuela;
 
@@ -156,3 +159,51 @@ INSERT INTO alumnos (MATRICULA, NOMBRE) VALUES(202320271, 'Dante Castelán Carpi
 
 SELECT * FROM alumnos;
 ```
+
+#### Instrucciones DDLM DML, DCL y TCL
+
+**DDL**
+
+Se encarga de la estructura de:
+- Bases de datos
+- Tablas
+- Campos
+- Índices
+- Restricciones
+- Código
+
+Consta de operaciones básicas como `CREATE`, `DROP`, y `ALTER`.
+
+**DML**
+
+Se encarga del registro de datos:
+- Añadir registros
+- Modificar registros
+- Borrar registros
+- Consultarlos
+
+**DCL**
+
+Se encarga -básicamente- de gestionar los permisos de los usuarios.
+
+- *Grant*
+- *Revoke*
+
+
+**TCL**
+
+Es el lenguaje de control de transacciones.
+
+- TRANSACTION
+- COMMIT
+- ROLLBACK
+
+#### Explicaciones
+
+Todas las bases de datos relacionales se basan en tablas. Las tablas se componen por registros, campos, y la tabla en sí misma.
+
+Por ejemplo, si tenemos la tabla alumnos, con los siguientes campos:
+
+| ID (`INT`) | NOM (`VARCHAR`) | TEL (`INT`) | DIR (`VARCHAR`) |
+|:-:|:-:|:-:|:-:|
+| -> | Todo esto | es un | registro |
