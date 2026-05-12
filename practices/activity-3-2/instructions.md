@@ -2,7 +2,7 @@
 
 **Fecha de entrega:** 8 de mayo de 2026, 23:59
 
-**Instrucciones:** Realiza el siguiente ejercicio de Usuarios y Permisos.
+**Instrucciones:** Realiza el siguiente ejercicio de usuarios y permisos.
 
 ---
 
