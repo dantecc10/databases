@@ -11,6 +11,18 @@
 
 Documentar la implementación del ejercicio de disparadores, mostrando la ejecución del script y evidencias de cada bloque.
 
+## Consideraciones y portabilidad
+
+La guía de la actividad está redactada con elementos propios de SQL Server (por ejemplo: `GETDATE()`, `USER_NAME()`, `HOST_NAME()`, `SYSTEM_USER` y el uso de `NVARCHAR`). Como preferencia personal se implementó la solución en **MySQL**, por lo que se realizaron los siguientes ajustes de portabilidad:
+
+- **Funciones de metadatos:** se sustituyeron por equivalentes en MySQL dentro de los triggers y evidencias: `NOW()` (fecha/hora), `USER()` (usuario/sesión) y `@@hostname` (host).
+- **Tipos de datos de texto:** se utilizó `VARCHAR(255)` en lugar de `NVARCHAR`, manteniendo el objetivo funcional del ejercicio.
+- **Auditoría con triggers:** se implementó la tabla `logs` y disparadores `AFTER INSERT`, `AFTER UPDATE` y `AFTER DELETE` para `employees`, `jobs` y `areas`, preservando el requisito de registrar operaciones sobre las tres tablas.
+- **Sintaxis específica de triggers en MySQL:** se usó `DELIMITER //` para definir bloques `BEGIN ... END`.
+- **Compatibilidad de nomenclatura:** se respetó la intención del modelo solicitado (Empleados, Puestos, Áreas), adaptando nombres a convención en inglés (`employees`, `jobs`, `areas`) para mantener consistencia en todo el script y para mantener mis preferencias en cuanto a nombres.
+
+Con estos cambios, la práctica cumple los requerimientos funcionales solicitados, manteniendo equivalencia técnica entre lo pedido en SQL Server y su ejecución en MySQL.
+
 ## Instrucciones de la práctica
 
 Según [practices/activity-3-1/instructions.md](instructions.md):
@@ -386,6 +398,7 @@ Los triggers para las áreas se crean correctamente:
 ![Ejecución en Navicat de los triggers para áreas](assets/img/exec7.png)
 
 ### Inserción de datos
+
 Inserto datos de ejemplo a las tres tablas: 11 registros a cada una.
 
 ```sql
