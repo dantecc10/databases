@@ -72,8 +72,10 @@ ADD CONSTRAINT `fk_employee_job` FOREIGN KEY (`id_job`) REFERENCES `personal`.`j
 # Claves foráneas para el área de los empleados.
 ALTER TABLE `personal`.`employees`
 ADD CONSTRAINT `fk_employee_area` FOREIGN KEY (`id_area`) REFERENCES `personal`.`areas` (`id_area`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 ```
+
+La ejecución es correcta:
+![Ejecución en Navicat de la creación de llaves foráneas](assets/img/exec2.png)
 
 ## Creación de la tabla de auditoría
 
@@ -91,6 +93,9 @@ CREATE TABLE `personal`.`logs` (
 );
 ```
 
+La ejecución es correcta:
+![Ejecución en Navicat de la creación de la talba de logs](assets/img/exec3.png)
+
 ## Creación de triggers
 
 Añado triggers para que en la tabla de logs se registre cada acción realizada, aún cuando se lleve a cabo una operación CRUD que afecte a varias filas:
@@ -99,6 +104,9 @@ Añado triggers para que en la tabla de logs se registre cada acción realizada,
 # Triggers
 DELIMITER //
 ```
+
+Establezco el delimitador:
+![Ejecución en Navicat del delimitador](assets/img/exec4.png)
 
 ```sql
 # Registros para la tabla de empleados
@@ -192,6 +200,9 @@ BEGIN
 END //
 ```
 
+Los triggers para los empleados se crean correctamente:
+![Ejecución en Navicat de los triggers para empleados](assets/img/exec5.png)
+
 ```sql
 # Registros para la tabla de puestos
 -- Registro de inserciones
@@ -277,6 +288,9 @@ BEGIN
   );
 END //
 ```
+
+Los triggers para los puestos se crean correctamente:
+![Ejecución en Navicat de los triggers para puestos](assets/img/exec6.png)
 
 ```sql
 # Registros para la tabla de áreas
@@ -368,49 +382,8 @@ END //
 DELIMITER ;
 ```
 
-### Evidencia de ejecucion - Bloque 1
-
-Inserta aqui la captura de pantalla de la ejecucion del Bloque 1.
-
-![Evidencia Bloque 1](assets/evidencia-bloque-1.png)
-
----
-
-## Bloque 2 - Creacion de tabla jobs
-
-```sql
-CREATE TABLE `personal`.`jobs` (
-  `id_job` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `description_job` varchar(255) NULL,
-  PRIMARY KEY (`id_job`)
-);
-```
-
-### Evidencia de ejecucion - Bloque 2
-
-Inserta aqui la captura de pantalla de la ejecucion del Bloque 2.
-
-![Evidencia Bloque 2](assets/evidencia-bloque-2.png)
-
----
-
-## Espacios para Bloques Siguientes
-
-Copia esta estructura para cada bloque adicional del script.
-
-### [Titulo del bloque]
-
-```sql
--- Pega aqui el bloque de codigo correspondiente
-```
-
-### Evidencia de ejecucion - Bloque N
-
-Inserta aqui la captura de pantalla de la ejecucion del bloque.
-
-![Evidencia Bloque N](assets/evidencia-bloque-n.png)
-
----
+Los triggers para las áreas se crean correctamente:
+![Ejecución en Navicat de los triggers para áreas](assets/img/exec7.png)
 
 ## Resultados Esperados
 
