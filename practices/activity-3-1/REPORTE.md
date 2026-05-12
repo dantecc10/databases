@@ -24,7 +24,7 @@ Según [practices/activity-3-1/instructions.md](instructions.md):
 
 El script completo se puede encontrar en: [practices/activity-3-1/source_query.sql](source_query.sql)
 
-## Creación de las tablas
+### Creación de las tablas
 
 ```sql
 # Tabla de empleados
@@ -60,7 +60,7 @@ CREATE TABLE `personal`.`areas` (
 La ejecución es correcta:
 ![Ejecución en Navicat de la creación de tablas](assets/img/exec1.png)
 
-## Creación de claves foráneas
+### Creación de claves foráneas
 
 Añado las llaves foráneas a las tablas para mantener la integridad referencial:
 
@@ -77,7 +77,7 @@ ADD CONSTRAINT `fk_employee_area` FOREIGN KEY (`id_area`) REFERENCES `personal`.
 La ejecución es correcta:
 ![Ejecución en Navicat de la creación de llaves foráneas](assets/img/exec2.png)
 
-## Creación de la tabla de auditoría
+### Creación de la tabla de auditoría
 
 ```sql
 # Tabla de registro de ejecuciones
@@ -96,7 +96,7 @@ CREATE TABLE `personal`.`logs` (
 La ejecución es correcta:
 ![Ejecución en Navicat de la creación de la talba de logs](assets/img/exec3.png)
 
-## Creación de triggers
+### Creación de triggers
 
 Añado triggers para que en la tabla de logs se registre cada acción realizada, aún cuando se lleve a cabo una operación CRUD que afecte a varias filas:
 
@@ -384,6 +384,101 @@ DELIMITER ;
 
 Los triggers para las áreas se crean correctamente:
 ![Ejecución en Navicat de los triggers para áreas](assets/img/exec7.png)
+
+### Inserción de datos
+Inserto datos de ejemplo a las tres tablas: 11 registros a cada una.
+
+```sql
+# Inserciones en tabla de puestos
+INSERT INTO `personal`.`jobs` (`description_job`)
+VALUES ('Software Engineer'),
+  ('Database Administrator'),
+  ('Systems Analyst'),
+  ('QA Engineer'),
+  ('Project Manager'),
+  ('UX Designer'),
+  ('DevOps Engineer'),
+  ('Backend Developer'),
+  ('Frontend Developer'),
+  ('Support Engineer'),
+  ('Data Analyst');
+```
+
+```sql
+INSERT INTO `personal`.`areas` (`description_area`)
+VALUES ('Technology'),
+  ('Human Resources'),
+  ('Finance'),
+  ('Operations'),
+  ('Marketing'),
+  ('Sales'),
+  ('Customer Service'),
+  ('Logistics'),
+  ('Security'),
+  ('Legal'),
+  ('Research and Development');
+```
+
+```sql
+# Inserciones en tabla de empleados
+INSERT INTO `personal`.`employees` (
+    `name_employee`,
+    `last_name_1_employee`,
+    `last_name_2_employee`,
+    `id_job`,
+    `id_area`
+  )
+VALUES ('Dante', 'Castelán', 'Carpinteyro', 1, 1),
+  ('Emiliano', 'Castelán', 'Carpinteyro', 2, 3),
+  ('Andrea', 'Castelán', 'Carpinteyro', 3, 4),
+  ('Luis', 'Ramirez', 'Torres', 4, 1),
+  ('Valeria', 'Flores', 'Mendez', 5, 5),
+  ('Diego', 'Castro', 'Nunez', 6, 5),
+  ('Elena', 'Vargas', 'Pineda', 7, 4),
+  ('Jorge', 'Santos', 'Morales', 8, 1),
+  ('Fernanda', 'Ortega', 'Vega', 9, 6),
+  ('Ricardo', 'Navarro', 'Silva', 10, 7),
+  ('Paula', 'Ibarra', 'Rios', 11, 11);
+```
+
+Realizo las inserciones y verifico que se hayan reflejado en sus respectivas tablas, así como en la de logs (2 imágenes):
+![Ejecución en Navicat de las inserciones](assets/img/exec8.png)
+![Ejecución en Navicat de las inserciones en logs](assets/img/exec9.png)
+
+Luego, hago la actualización de dos registros a cada tabla:
+
+```sql
+# Puestos
+UPDATE `personal`.`jobs`
+SET `description_job` = 'Senior Software Engineer'
+WHERE `id_job` = 1;
+UPDATE `personal`.`jobs`
+SET `description_job` = 'Lead Database Administrator'
+WHERE `id_job` = 2;
+```
+
+```sql
+# Áreas
+UPDATE `personal`.`areas`
+SET `description_area` = 'Information Technology'
+WHERE `id_area` = 1;
+UPDATE `personal`.`areas`
+SET `description_area` = 'Corporate Finance'
+WHERE `id_area` = 3;
+```
+
+```sql
+# Empleados
+UPDATE `personal`.`employees`
+SET `name_employee` = 'Ana Maria'
+WHERE `id_employee` = 1;
+UPDATE `personal`.`employees`
+SET `last_name_2_employee` = 'Delgado'
+WHERE `id_employee` = 2;
+```
+
+Ejecución de las actualizaciones:
+![Ejecución en Navicat de las actualizaciones](assets/img/exec10.png)
 
 ## Resultados Esperados
 
