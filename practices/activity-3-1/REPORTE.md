@@ -481,6 +481,88 @@ WHERE `id_employee` = 2;
 Ejecución de las actualizaciones:
 ![Ejecución en Navicat de las actualizaciones](assets/img/exec10.png)
 
+Verifico que los cambios se hayan aplicado correctamente en cada tabla y que los triggers hayan registrado las operaciones en logs:
+
+```sql
+# SELECT de verificación después de la actualización
+SELECT `id_job`, `description_job`
+FROM `personal`.`jobs`
+WHERE `id_job` IN (1, 2);
+
+SELECT `id_area`, `description_area`
+FROM `personal`.`areas`
+WHERE `id_area` IN (1, 3);
+
+SELECT `id_employee`, `name_employee`, `last_name_2_employee`
+FROM `personal`.`employees`
+WHERE `id_employee` IN (1, 2);
+
+SELECT * FROM `personal`.`logs` ORDER BY `id_log`;
+```
+
+![Ejecución en Navicat de la verificación post-actualización](assets/img/exec11.png)
+
+### Eliminación de registros
+
+Elimino el último registro de cada tabla respetando el orden de las relaciones (primero employees, luego jobs y areas) para no violar las restricciones de las llaves foráneas:
+
+```sql
+# DELETE del último registro en cada tabla, respetando las relaciones
+# 1) employees, 2) jobs, 3) areas
+DELETE FROM `personal`.`employees`
+WHERE `id_employee` = (
+    SELECT MAX(id_employee)
+    FROM (
+        SELECT `id_employee`
+        FROM `personal`.`employees`
+      ) AS e
+  );
+
+DELETE FROM `personal`.`jobs`
+WHERE `id_job` = (
+    SELECT MAX(id_job)
+    FROM (
+        SELECT `id_job`
+        FROM `personal`.`jobs`
+      ) AS j
+  );
+
+DELETE FROM `personal`.`areas`
+WHERE `id_area` = (
+    SELECT MAX(id_area)
+    FROM (
+        SELECT `id_area`
+        FROM `personal`.`areas`
+      ) AS a
+  );
+```
+
+![Ejecución en Navicat de las eliminaciones](assets/img/exec12.png)
+
+Verifico que cada tabla haya quedado con exactamente 10 registros y que los triggers hayan registrado las eliminaciones en logs:
+
+```sql
+# SELECT de verificación post-delete
+SELECT 'jobs' AS table_name, COUNT(*) AS total_rows FROM `personal`.`jobs`
+UNION ALL
+SELECT 'areas' AS table_name, COUNT(*) AS total_rows FROM `personal`.`areas`
+UNION ALL
+SELECT 'employees' AS table_name, COUNT(*) AS total_rows FROM `personal`.`employees`;
+
+SELECT * FROM `personal`.`logs` ORDER BY `id_log`;
+```
+
+![Ejecución en Navicat de la verificación después de las eliminaciones](assets/img/exec13.png)
+
+Por último, consulto los logs en orden descendente para revisar los registros más recientes primero:
+
+```sql
+# Leo los logs en orden descendente para ver los más recientes
+SELECT * FROM `personal`.`logs` ORDER BY `id_log` DESC;
+```
+
+![Ejecución en Navicat de logs en orden descendente](assets/img/exec14.png)
+
 ## Resultados esperados
 
 - Las tablas principales deben crearse correctamente.
