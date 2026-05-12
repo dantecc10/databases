@@ -405,6 +405,7 @@ VALUES ('Software Engineer'),
 ```
 
 ```sql
+# Inserciones en tabla de áreas
 INSERT INTO `personal`.`areas` (`description_area`)
 VALUES ('Technology'),
   ('Human Resources'),
@@ -480,12 +481,14 @@ WHERE `id_employee` = 2;
 Ejecución de las actualizaciones:
 ![Ejecución en Navicat de las actualizaciones](assets/img/exec10.png)
 
-## Resultados Esperados
+## Resultados esperados
 
 - Las tablas principales deben crearse correctamente.
 - Los triggers deben registrar INSERT, UPDATE y DELETE en logs.
-- Deben existir evidencias de inserciones, actualizaciones y eliminaciones segun la practica.
+- Deben existir evidencias de inserciones, actualizaciones y eliminaciones según la práctica.
 
 ## Conclusiones
 
-[Escribe aqui tus conclusiones finales de la practica.]
+Crear tablas y llaves foráneas entre ellas para mantener la integridad es una buena práctica; pero tener un registro de las operaciones que cualquier usuario realice es fundamental para cualquier administrador de sistemas y -en este caso- de bases de datos puesto que permite detectar cada acción que se realiza y así poder tener una respuesta en caso de incidentes o de manipulación indebida de datos.
+
+Es por ello que el uso de triggers es la mejor estrategia para tener una automatización del flujo de registro de las operaciones cotidianas.
