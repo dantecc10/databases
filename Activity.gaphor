@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gaphor xmlns="https://gaphor.org/model" xmlns:Core="https://gaphor.org/modelinglanguage/Core" xmlns:UML="https://gaphor.org/modelinglanguage/UML" version="4" gaphor-version="3.2.0">
+<model>
+<Core:StyleSheet id="58d6989a-66f8-11ec-b4c8-0456e5e540ed"/>
+<UML:Package id="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed">
+<name>
+<val>New model</val>
+</name>
+<ownedDiagram>
+<reflist>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</reflist>
+</ownedDiagram>
+<ownedType>
+<reflist>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+<ref refid="f9d35ec4-0c5e-11f1-81c7-2780dd0aa36d"/>
+<ref refid="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d"/>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+<ref refid="07ad63d9-0c61-11f1-8e33-2780dd0aa36d"/>
+<ref refid="0ce5344f-0c61-11f1-900b-2780dd0aa36d"/>
+</reflist>
+</ownedType>
+<packagedElement>
+<reflist>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+<ref refid="f9d35ec4-0c5e-11f1-81c7-2780dd0aa36d"/>
+<ref refid="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d"/>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+<ref refid="07ad63d9-0c61-11f1-8e33-2780dd0aa36d"/>
+<ref refid="0ce5344f-0c61-11f1-900b-2780dd0aa36d"/>
+</reflist>
+</packagedElement>
+</UML:Package>
+<UML:Diagram id="58d6c536-66f8-11ec-b4c8-0456e5e540ed">
+<element>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</element>
+<name>
+<val>New Diagram</val>
+</name>
+<ownedDiagram>
+<reflist>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</reflist>
+</ownedDiagram>
+</UML:Diagram>
+<UML:ClassDiagram id="e24b95fd-0c5e-11f1-8713-2780dd0aa36d">
+<element>
+<ref refid="58d6c536-66f8-11ec-b4c8-0456e5e540ed"/>
+</element>
+<name>
+<val>Hospital</val>
+</name>
+<ownedPresentation>
+<reflist>
+<ref refid="e4357101-0c5e-11f1-9fa2-2780dd0aa36d"/>
+<ref refid="e8e88556-0c5e-11f1-a249-2780dd0aa36d"/>
+<ref refid="ee8184e9-0c5e-11f1-a284-2780dd0aa36d"/>
+<ref refid="f9d3fcf3-0c5e-11f1-bff3-2780dd0aa36d"/>
+<ref refid="f019d3bd-0c5f-11f1-a40b-2780dd0aa36d"/>
+<ref refid="f65e8415-0c5f-11f1-a2d8-2780dd0aa36d"/>
+<ref refid="4c238958-0c60-11f1-91d8-2780dd0aa36d"/>
+<ref refid="06306bc6-0c61-11f1-990c-2780dd0aa36d"/>
+<ref refid="0aae70c6-0c61-11f1-9932-2780dd0aa36d"/>
+</reflist>
+</ownedPresentation>
+</UML:ClassDiagram>
+<UML:Class id="e434d521-0c5e-11f1-afb0-2780dd0aa36d">
+<name>
+<val>Trabajadores</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="09155f13-0c5f-11f1-a0b9-2780dd0aa36d"/>
+<ref refid="0b475ac2-0c5f-11f1-80ff-2780dd0aa36d"/>
+<ref refid="0c7b4849-0c5f-11f1-b9b4-2780dd0aa36d"/>
+<ref refid="0ff7eb9f-0c5f-11f1-baae-2780dd0aa36d"/>
+<ref refid="13443470-0c5f-11f1-a072-2780dd0aa36d"/>
+</reflist>
+</ownedAttribute>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="e4357101-0c5e-11f1-9fa2-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="e4357101-0c5e-11f1-9fa2-2780dd0aa36d">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 234.8115454867299, 280.11444206360574)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>144.0</val>
+</width>
+<height>
+<val>172.0</val>
+</height>
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<subject>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+</subject>
+</UML:ClassItem>
+<UML:Class id="e8e809f5-0c5e-11f1-b802-2780dd0aa36d">
+<name>
+<val>Consultas</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="7c79c9e5-0c5f-11f1-a984-2780dd0aa36d"/>
+<ref refid="82ec1910-0c5f-11f1-8650-2780dd0aa36d"/>
+<ref refid="8a338b08-0c5f-11f1-a1d5-2780dd0aa36d"/>
+<ref refid="8b90a601-0c5f-11f1-9d7a-2780dd0aa36d"/>
+<ref refid="92b66894-0c5f-11f1-a675-2780dd0aa36d"/>
+<ref refid="9e92bf5e-0c60-11f1-9e66-2780dd0aa36d"/>
+</reflist>
+</ownedAttribute>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="e8e88556-0c5e-11f1-a249-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="e8e88556-0c5e-11f1-a249-2780dd0aa36d">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 479.50272769003755, 194.1144420636058)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>119.0</val>
+</width>
+<height>
+<val>172.0</val>
+</height>
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<subject>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</subject>
+</UML:ClassItem>
+<UML:Class id="ee81181b-0c5e-11f1-a018-2780dd0aa36d">
+<name>
+<val>Pacientes</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="30fbe1b4-0c5f-11f1-91d1-2780dd0aa36d"/>
+<ref refid="32a5cc63-0c5f-11f1-b39d-2780dd0aa36d"/>
+<ref refid="3a907a4e-0c5f-11f1-99a8-2780dd0aa36d"/>
+<ref refid="3dd6acc9-0c5f-11f1-b8be-2780dd0aa36d"/>
+<ref refid="408827ed-0c5f-11f1-ac77-2780dd0aa36d"/>
+<ref refid="421c85b7-0c5f-11f1-886d-2780dd0aa36d"/>
+</reflist>
+</ownedAttribute>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="ee8184e9-0c5e-11f1-a284-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="ee8184e9-0c5e-11f1-a284-2780dd0aa36d">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 255.3115454867299, 67.94923882685217)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>103.0</val>
+</width>
+<height>
+<val>172.0</val>
+</height>
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<subject>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</subject>
+</UML:ClassItem>
+<UML:Class id="f9d35ec4-0c5e-11f1-81c7-2780dd0aa36d">
+<name>
+<val>Operaciones</val>
+</name>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="f9d3fcf3-0c5e-11f1-bff3-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="f9d3fcf3-0c5e-11f1-bff3-2780dd0aa36d">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 263.491455078125, 628.4697875976562)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>105.0</val>
+</width>
+<height>
+<val>70.0</val>
+</height>
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<subject>
+<ref refid="f9d35ec4-0c5e-11f1-81c7-2780dd0aa36d"/>
+</subject>
+</UML:ClassItem>
+<UML:Property id="09155f13-0c5f-11f1-a0b9-2780dd0aa36d">
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="0b475ac2-0c5f-11f1-80ff-2780dd0aa36d">
+<name>
+<val>nombre</val>
+</name>
+<structuredClassifier>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="0c7b4849-0c5f-11f1-b9b4-2780dd0aa36d">
+<name>
+<val>tipo</val>
+</name>
+<structuredClassifier>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="0ff7eb9f-0c5f-11f1-baae-2780dd0aa36d">
+<name>
+<val>dirección</val>
+</name>
+<structuredClassifier>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="13443470-0c5f-11f1-a072-2780dd0aa36d">
+<name>
+<val>teléfono</val>
+</name>
+<structuredClassifier>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="30fbe1b4-0c5f-11f1-91d1-2780dd0aa36d">
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="32a5cc63-0c5f-11f1-b39d-2780dd0aa36d">
+<name>
+<val>nss</val>
+</name>
+<structuredClassifier>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="3a907a4e-0c5f-11f1-99a8-2780dd0aa36d">
+<name>
+<val>expediente</val>
+</name>
+<structuredClassifier>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="3dd6acc9-0c5f-11f1-b8be-2780dd0aa36d">
+<name>
+<val>nombre</val>
+</name>
+<structuredClassifier>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="408827ed-0c5f-11f1-ac77-2780dd0aa36d">
+<name>
+<val>teléfono</val>
+</name>
+<structuredClassifier>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="421c85b7-0c5f-11f1-886d-2780dd0aa36d">
+<name>
+<val>dirección</val>
+</name>
+<structuredClassifier>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="7c79c9e5-0c5f-11f1-a984-2780dd0aa36d">
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="82ec1910-0c5f-11f1-8650-2780dd0aa36d">
+<name>
+<val>id_paciente</val>
+</name>
+<structuredClassifier>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="8a338b08-0c5f-11f1-a1d5-2780dd0aa36d">
+<name>
+<val>id_trabajador</val>
+</name>
+<structuredClassifier>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="8b90a601-0c5f-11f1-9d7a-2780dd0aa36d">
+<name>
+<val>fecha</val>
+</name>
+<structuredClassifier>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="92b66894-0c5f-11f1-a675-2780dd0aa36d">
+<name>
+<val>diagnóstico</val>
+</name>
+<structuredClassifier>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Class id="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d">
+<name>
+<val>Recetas</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="7a7f5324-0c60-11f1-beef-2780dd0aa36d"/>
+<ref refid="88a45b4e-0c60-11f1-ac91-2780dd0aa36d"/>
+<ref refid="911c1164-0c60-11f1-92ab-2780dd0aa36d"/>
+<ref refid="96810735-0c60-11f1-b853-2780dd0aa36d"/>
+</reflist>
+</ownedAttribute>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="f019d3bd-0c5f-11f1-a40b-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="f019d3bd-0c5f-11f1-a40b-2780dd0aa36d">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 734.0874698636027, 58.25066647164387)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>127.0</val>
+</width>
+<height>
+<val>151.0</val>
+</height>
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<subject>
+<ref refid="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d"/>
+</subject>
+</UML:ClassItem>
+<UML:Class id="f65e18d4-0c5f-11f1-9775-2780dd0aa36d">
+<name>
+<val>Medicamentos</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="fc598fc4-0c5f-11f1-ac63-2780dd0aa36d"/>
+<ref refid="ff6990fc-0c5f-11f1-8e30-2780dd0aa36d"/>
+<ref refid="04321314-0c60-11f1-9807-2780dd0aa36d"/>
+<ref refid="0cc10e61-0c60-11f1-b5e2-2780dd0aa36d"/>
+<ref refid="0e3fbb71-0c60-11f1-ba11-2780dd0aa36d"/>
+<ref refid="0fa77a9e-0c60-11f1-ad6c-2780dd0aa36d"/>
+</reflist>
+</ownedAttribute>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="f65e8415-0c5f-11f1-a2d8-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="f65e8415-0c5f-11f1-a2d8-2780dd0aa36d">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 468.41200883408, 754.506726298062)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>210.0</val>
+</width>
+<height>
+<val>172.0</val>
+</height>
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<subject>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+</subject>
+</UML:ClassItem>
+<UML:Property id="fc598fc4-0c5f-11f1-ac63-2780dd0aa36d">
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="ff6990fc-0c5f-11f1-8e30-2780dd0aa36d">
+<name>
+<val>nombre_comercial</val>
+</name>
+<structuredClassifier>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="04321314-0c60-11f1-9807-2780dd0aa36d">
+<name>
+<val>fabricante</val>
+</name>
+<structuredClassifier>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="0cc10e61-0c60-11f1-b5e2-2780dd0aa36d">
+<name>
+<val>nombre_farmacológico</val>
+</name>
+<structuredClassifier>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="0e3fbb71-0c60-11f1-ba11-2780dd0aa36d">
+<name>
+<val>cantidad_sustancia_activa</val>
+</name>
+<structuredClassifier>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="0fa77a9e-0c60-11f1-ad6c-2780dd0aa36d">
+<name>
+<val>stock</val>
+</name>
+<structuredClassifier>
+<ref refid="f65e18d4-0c5f-11f1-9775-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Class id="4c23142e-0c60-11f1-a6f2-2780dd0aa36d">
+<name>
+<val>Medicaciones</val>
+</name>
+<ownedAttribute>
+<reflist>
+<ref refid="52e2c7b7-0c60-11f1-b619-2780dd0aa36d"/>
+<ref refid="560b81db-0c60-11f1-be29-2780dd0aa36d"/>
+<ref refid="5ffe47cf-0c60-11f1-84f8-2780dd0aa36d"/>
+<ref refid="6254acbb-0c60-11f1-be69-2780dd0aa36d"/>
+<ref refid="665a69e6-0c60-11f1-9206-2780dd0aa36d"/>
+<ref refid="6d7c124f-0c60-11f1-88e8-2780dd0aa36d"/>
+<ref refid="8492dfbb-0c60-11f1-a1ae-2780dd0aa36d"/>
+</reflist>
+</ownedAttribute>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="4c238958-0c60-11f1-91d8-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Class>
+<UML:ClassItem id="4c238958-0c60-11f1-91d8-2780dd0aa36d">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 926.3184204101562, 255.84689331054688)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>143.0</val>
+</width>
+<height>
+<val>189.0</val>
+</height>
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<subject>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</subject>
+</UML:ClassItem>
+<UML:Property id="52e2c7b7-0c60-11f1-b619-2780dd0aa36d">
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="560b81db-0c60-11f1-be29-2780dd0aa36d">
+<name>
+<val>id_medicamento</val>
+</name>
+<structuredClassifier>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="5ffe47cf-0c60-11f1-84f8-2780dd0aa36d">
+<name>
+<val>id_paciente</val>
+</name>
+<structuredClassifier>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="6254acbb-0c60-11f1-be69-2780dd0aa36d">
+<name>
+<val>id_trabajador</val>
+</name>
+<structuredClassifier>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="665a69e6-0c60-11f1-9206-2780dd0aa36d">
+<name>
+<val>instrucciones</val>
+</name>
+<structuredClassifier>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="6d7c124f-0c60-11f1-88e8-2780dd0aa36d">
+<name>
+<val>dosis</val>
+</name>
+<structuredClassifier>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="7a7f5324-0c60-11f1-beef-2780dd0aa36d">
+<name>
+<val>id</val>
+</name>
+<structuredClassifier>
+<ref refid="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="8492dfbb-0c60-11f1-a1ae-2780dd0aa36d">
+<name>
+<val>fecha</val>
+</name>
+<structuredClassifier>
+<ref refid="4c23142e-0c60-11f1-a6f2-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="88a45b4e-0c60-11f1-ac91-2780dd0aa36d">
+<name>
+<val>fecha</val>
+</name>
+<structuredClassifier>
+<ref refid="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="911c1164-0c60-11f1-92ab-2780dd0aa36d">
+<name>
+<val>id_receta</val>
+</name>
+<structuredClassifier>
+<ref refid="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="96810735-0c60-11f1-b853-2780dd0aa36d">
+<name>
+<val>id_medicación</val>
+</name>
+<structuredClassifier>
+<ref refid="f0194ac5-0c5f-11f1-a8f8-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:Property id="9e92bf5e-0c60-11f1-9e66-2780dd0aa36d">
+<name>
+<val>id_receta</val>
+</name>
+<structuredClassifier>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</structuredClassifier>
+</UML:Property>
+<UML:AssociationItem id="06306bc6-0c61-11f1-990c-2780dd0aa36d">
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<head_subject>
+<ref refid="07adc4f9-0c61-11f1-9405-2780dd0aa36d"/>
+</head_subject>
+<horizontal>
+<val>False</val>
+</horizontal>
+<orthogonal>
+<val>False</val>
+</orthogonal>
+<subject>
+<ref refid="07ad63d9-0c61-11f1-8e33-2780dd0aa36d"/>
+</subject>
+<tail_subject>
+<ref refid="07adcd6c-0c61-11f1-b939-2780dd0aa36d"/>
+</tail_subject>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 478.47837340649704, 275.1407632116751)</val>
+</matrix>
+<points>
+<val>[(1.0243542835405037, 0.0), (-120.16682791976714, -141.39009674003123)]</val>
+</points>
+<head-connection>
+<ref refid="e8e88556-0c5e-11f1-a249-2780dd0aa36d"/>
+</head-connection>
+<tail-connection>
+<ref refid="ee8184e9-0c5e-11f1-a284-2780dd0aa36d"/>
+</tail-connection>
+</UML:AssociationItem>
+<UML:Association id="07ad63d9-0c61-11f1-8e33-2780dd0aa36d">
+<memberEnd>
+<reflist>
+<ref refid="07adc4f9-0c61-11f1-9405-2780dd0aa36d"/>
+<ref refid="07adcd6c-0c61-11f1-b939-2780dd0aa36d"/>
+</reflist>
+</memberEnd>
+<ownedEnd>
+<reflist>
+<ref refid="07adc4f9-0c61-11f1-9405-2780dd0aa36d"/>
+<ref refid="07adcd6c-0c61-11f1-b939-2780dd0aa36d"/>
+</reflist>
+</ownedEnd>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="06306bc6-0c61-11f1-990c-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Association>
+<UML:Property id="07adc4f9-0c61-11f1-9405-2780dd0aa36d">
+<association>
+<ref refid="07ad63d9-0c61-11f1-8e33-2780dd0aa36d"/>
+</association>
+<owningAssociation>
+<ref refid="07ad63d9-0c61-11f1-8e33-2780dd0aa36d"/>
+</owningAssociation>
+<type>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</type>
+</UML:Property>
+<UML:Property id="07adcd6c-0c61-11f1-b939-2780dd0aa36d">
+<association>
+<ref refid="07ad63d9-0c61-11f1-8e33-2780dd0aa36d"/>
+</association>
+<owningAssociation>
+<ref refid="07ad63d9-0c61-11f1-8e33-2780dd0aa36d"/>
+</owningAssociation>
+<type>
+<ref refid="ee81181b-0c5e-11f1-a018-2780dd0aa36d"/>
+</type>
+</UML:Property>
+<UML:AssociationItem id="0aae70c6-0c61-11f1-9932-2780dd0aa36d">
+<diagram>
+<ref refid="e24b95fd-0c5e-11f1-8713-2780dd0aa36d"/>
+</diagram>
+<head_subject>
+<ref refid="0ce5c3ae-0c61-11f1-9d73-2780dd0aa36d"/>
+</head_subject>
+<horizontal>
+<val>False</val>
+</horizontal>
+<orthogonal>
+<val>False</val>
+</orthogonal>
+<subject>
+<ref refid="0ce5344f-0c61-11f1-900b-2780dd0aa36d"/>
+</subject>
+<tail_subject>
+<ref refid="0ce5cbc6-0c61-11f1-942c-2780dd0aa36d"/>
+</tail_subject>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 477.83642859423037, 293.6951655070938)</val>
+</matrix>
+<points>
+<val>[(1.666299095807176, 0.0), (-99.02488310750047, 56.65172780345307)]</val>
+</points>
+<head-connection>
+<ref refid="e8e88556-0c5e-11f1-a249-2780dd0aa36d"/>
+</head-connection>
+<tail-connection>
+<ref refid="e4357101-0c5e-11f1-9fa2-2780dd0aa36d"/>
+</tail-connection>
+</UML:AssociationItem>
+<UML:Association id="0ce5344f-0c61-11f1-900b-2780dd0aa36d">
+<memberEnd>
+<reflist>
+<ref refid="0ce5c3ae-0c61-11f1-9d73-2780dd0aa36d"/>
+<ref refid="0ce5cbc6-0c61-11f1-942c-2780dd0aa36d"/>
+</reflist>
+</memberEnd>
+<ownedEnd>
+<reflist>
+<ref refid="0ce5c3ae-0c61-11f1-9d73-2780dd0aa36d"/>
+<ref refid="0ce5cbc6-0c61-11f1-942c-2780dd0aa36d"/>
+</reflist>
+</ownedEnd>
+<owningPackage>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</owningPackage>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="0aae70c6-0c61-11f1-9932-2780dd0aa36d"/>
+</reflist>
+</presentation>
+</UML:Association>
+<UML:Property id="0ce5c3ae-0c61-11f1-9d73-2780dd0aa36d">
+<association>
+<ref refid="0ce5344f-0c61-11f1-900b-2780dd0aa36d"/>
+</association>
+<owningAssociation>
+<ref refid="0ce5344f-0c61-11f1-900b-2780dd0aa36d"/>
+</owningAssociation>
+<type>
+<ref refid="e8e809f5-0c5e-11f1-b802-2780dd0aa36d"/>
+</type>
+</UML:Property>
+<UML:Property id="0ce5cbc6-0c61-11f1-942c-2780dd0aa36d">
+<association>
+<ref refid="0ce5344f-0c61-11f1-900b-2780dd0aa36d"/>
+</association>
+<owningAssociation>
+<ref refid="0ce5344f-0c61-11f1-900b-2780dd0aa36d"/>
+</owningAssociation>
+<type>
+<ref refid="e434d521-0c5e-11f1-afb0-2780dd0aa36d"/>
+</type>
+</UML:Property>
+</model>
+</gaphor>
