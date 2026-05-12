@@ -57,9 +57,12 @@ CREATE TABLE `personal`.`areas` (
 );
 ```
 
+La ejecución es correcta:
+![Ejecución en Navicat de la creación de tablas](assets/img/exec1.png)
+
 ## Creación de claves foráneas
 
-Añado las llaves foráneas a las tablas para mantener la integridad referencial.
+Añado las llaves foráneas a las tablas para mantener la integridad referencial:
 
 ```sql
 # Añadir claves foráneas
@@ -70,6 +73,299 @@ ADD CONSTRAINT `fk_employee_job` FOREIGN KEY (`id_job`) REFERENCES `personal`.`j
 ALTER TABLE `personal`.`employees`
 ADD CONSTRAINT `fk_employee_area` FOREIGN KEY (`id_area`) REFERENCES `personal`.`areas` (`id_area`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+```
+
+## Creación de la tabla de auditoría
+
+```sql
+# Tabla de registro de ejecuciones
+CREATE TABLE `personal`.`logs` (
+  `id_log` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `date_log` datetime NOT NULL,
+  `user_log` varchar(255) NOT NULL,
+  `host_log` varchar(255) NOT NULL,
+  `type_log` varchar(20) NOT NULL,
+  `query_log` text NOT NULL,
+  `affected_table_row_log` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_log`)
+);
+```
+
+## Creación de triggers
+
+Añado triggers para que en la tabla de logs se registre cada acción realizada, aún cuando se lleve a cabo una operación CRUD que afecte a varias filas:
+
+```sql
+# Triggers
+DELIMITER //
+```
+
+```sql
+# Registros para la tabla de empleados
+-- Registro de inserciones
+CREATE TRIGGER `employees_insert_trg`
+AFTER INSERT ON `personal`.`employees`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'INSERT',
+    CONCAT(
+      'INSERT INTO `personal`.`employees` (`name_employee`, `last_name_1_employee`, `last_name_2_employee`, `id_job`, `id_area`) VALUES (',
+      QUOTE(NEW.name_employee), ', ',
+      QUOTE(NEW.last_name_1_employee), ', ',
+      QUOTE(NEW.last_name_2_employee), ', ',
+      NEW.id_job, ', ',
+      NEW.id_area,
+      ');'
+    ),
+    'employees'
+  );
+END //
+ 
+-- Registro de actualizaciones
+CREATE TRIGGER `employees_update_trg`
+AFTER UPDATE ON `personal`.`employees`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'UPDATE',
+    CONCAT(
+      'UPDATE `personal`.`employees` SET `name_employee` = ', QUOTE(NEW.name_employee),
+      ', `last_name_1_employee` = ', QUOTE(NEW.last_name_1_employee),
+      ', `last_name_2_employee` = ', QUOTE(NEW.last_name_2_employee),
+      ', `id_job` = ', NEW.id_job,
+      ', `id_area` = ', NEW.id_area,
+      ' WHERE `id_employee` = ', OLD.id_employee,
+      ';'
+    ),
+    'employees'
+  );
+END //
+ 
+-- Registro de eliminaciones
+CREATE TRIGGER `employees_delete_trg`
+AFTER DELETE ON `personal`.`employees`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'DELETE',
+    CONCAT(
+      'DELETE FROM `personal`.`employees` WHERE `id_employee` = ',
+      OLD.id_employee,
+      ';'
+    ),
+    'employees'
+  );
+END //
+```
+
+```sql
+# Registros para la tabla de puestos
+-- Registro de inserciones
+CREATE TRIGGER `jobs_insert_trg`
+AFTER INSERT ON `personal`.`jobs`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'INSERT',
+    CONCAT(
+      'INSERT INTO `personal`.`jobs` (`description_job`) VALUES (',
+      QUOTE(NEW.description_job),
+      ');'
+    ),
+    'jobs'
+  );
+END //
+
+-- Registro de actualizaciones
+CREATE TRIGGER `jobs_update_trg`
+AFTER UPDATE ON `personal`.`jobs`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'UPDATE',
+    CONCAT(
+      'UPDATE `personal`.`jobs` SET `description_job` = ',
+      QUOTE(NEW.description_job),
+      ' WHERE `id_job` = ',
+      OLD.id_job,
+      ';'
+    ),
+    'jobs'
+  );
+END //
+
+-- Registro de eliminaciones
+CREATE TRIGGER `jobs_delete_trg`
+AFTER DELETE ON `personal`.`jobs`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'DELETE',
+    CONCAT(
+      'DELETE FROM `personal`.`jobs` WHERE `id_job` = ',
+      OLD.id_job,
+      ';'
+    ),
+    'jobs'
+  );
+END //
+```
+
+```sql
+# Registros para la tabla de áreas
+-- Registro de inserciones
+CREATE TRIGGER `areas_insert_trg`
+AFTER INSERT ON `personal`.`areas`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'INSERT',
+    CONCAT(
+      'INSERT INTO `personal`.`areas` (`description_area`) VALUES (',
+      QUOTE(NEW.description_area),
+      ');'
+    ),
+    'areas'
+  );
+END //
+
+-- Registro de actualizaciones
+CREATE TRIGGER `areas_update_trg`
+AFTER UPDATE ON `personal`.`areas`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'UPDATE',
+    CONCAT(
+      'UPDATE `personal`.`areas` SET `description_area` = ',
+      QUOTE(NEW.description_area),
+      ' WHERE `id_area` = ',
+      OLD.id_area,
+      ';'
+    ),
+    'areas'
+  );
+END //
+
+-- Registro de eliminaciones
+CREATE TRIGGER `areas_delete_trg`
+AFTER DELETE ON `personal`.`areas`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `personal`.`logs` (
+    date_log,
+    user_log,
+    host_log,
+    type_log,
+    query_log,
+    affected_table_row_log
+  )
+  VALUES (
+    NOW(),
+    USER(),
+    @@hostname,
+    'DELETE',
+    CONCAT(
+      'DELETE FROM `personal`.`areas` WHERE `id_area` = ',
+      OLD.id_area,
+      ';'
+    ),
+    'areas'
+  );
+END //
+```
+
+```sql
+DELIMITER ;
 ```
 
 ### Evidencia de ejecucion - Bloque 1

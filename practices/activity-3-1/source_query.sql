@@ -81,7 +81,7 @@ BEGIN
   );
 END //
  
-# Registro de actualizaciones
+-- Registro de actualizaciones
 CREATE TRIGGER `employees_update_trg`
 AFTER UPDATE ON `personal`.`employees`
 FOR EACH ROW
