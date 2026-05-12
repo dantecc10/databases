@@ -110,7 +110,7 @@ Evidencia de ejecución:
 Evidencia de ejecución:
 ![Ejecución en cliente SQL de alteración y actualización](assets/img/exec9.png)
 
-### Permiso de lectura sobre Direccion para el primer login
+### Permiso de lectura sobre dirección para el primer login
 
 ```sql
 -- Pegar aquí el permiso de lectura sobre Direccion para el primer login y su prueba
