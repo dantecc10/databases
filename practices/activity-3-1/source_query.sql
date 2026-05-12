@@ -1,3 +1,10 @@
+/*
+DROP TABLE `employees`;
+DROP TABLE `jobs`;
+DROP TABLE `areas`;
+DROP TABLE `logs`;
+*/
+
 # Ejercicio 3.1 (Actividad 10)
 # Tabla de empleados
 CREATE TABLE `personal`.`employees` (
@@ -453,4 +460,5 @@ SELECT *
 FROM `personal`.`logs`
 ORDER BY `id_log`;
 
-SELECT * FROM  `logs`;
+# Leo los logs en orden descendente para ver los más recientes
+SELECT * FROM `personal`.`logs` ORDER BY `id_log` DESC;

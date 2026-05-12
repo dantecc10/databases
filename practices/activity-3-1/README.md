@@ -1,33 +1,30 @@
 # Reporte de Practica 3.1 - Disparadores (Triggers)
 
 ## Datos Generales
-
 - Materia: Bases de Datos
 - Actividad: 3.1 (Actividad 10)
-- Alumno: Dante Castelán Carpinteyro
-- Fecha: 8 de mayo de 2026
+- Alumno: [Tu nombre]
+- Fecha: [Completar]
 
 ## Objetivo del Reporte
+Documentar la implementacion del ejercicio de disparadores, mostrando la ejecucion del script y evidencias de cada bloque.
 
-Documentar la implementación del ejercicio de disparadores, mostrando la ejecución del script y evidencias de cada bloque.
+## Instrucciones de la Practica (Cita)
+Segun [practices/activity-3-1/instructions.md](practices/activity-3-1/instructions.md):
 
-## Instrucciones de la práctica
-
-Según [practices/activity-3-1/instructions.md](instructions.md):
-
-> 1. Crear una base de datos que se llame "personal".
+> 1. Crear una base de datos que se llame Personal.
+>
 > 2. Dentro de la base de datos creada, crear 3 tablas con las estructuras solicitadas (Empleados, Puestos y Areas).
-> 3. Crear una tabla de auditoría para registrar operaciones sobre AREAS, EMPLEADOS y PUESTOS.
-> 4. Insertar mínimo 11 registros por tabla, actualizar al menos 2 por tabla y eliminar el ultimo registro para dejar 10.
+>
+> 3. Crear una tabla de auditoria para registrar operaciones sobre AREAS, EMPLEADOS y PUESTOS.
+>
+> 4. Insertar minimo 11 registros por tabla, actualizar al menos 2 por tabla y eliminar el ultimo registro para dejar 10.
 
-## Implementación
+## Script Implementado
+Archivo base utilizado: [practices/activity-3-1/source_query.sql](practices/activity-3-1/source_query.sql)
 
-El script completo se puede encontrar en: [practices/activity-3-1/source_query.sql](source_query.sql)
-
-## Creación de las tablas
-
+## Bloque 1 - Creacion de tabla employees
 ```sql
-# Tabla de empleados
 CREATE TABLE `personal`.`employees` (
   `id_employee` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `name_employee` varchar(255) NOT NULL,
@@ -39,41 +36,7 @@ CREATE TABLE `personal`.`employees` (
 );
 ```
 
-```sql
-# Tabla de puestos
-CREATE TABLE `personal`.`jobs` (
-  `id_job` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `description_job` varchar(255) NULL,
-  PRIMARY KEY (`id_job`)
-);
-```
-
-```sql
-# Tabla de áreas
-CREATE TABLE `personal`.`areas` (
-  `id_area` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `description_area` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_area`)
-);
-```
-
-## Creación de claves foráneas
-
-Añado las llaves foráneas a las tablas para mantener la integridad referencial.
-
-```sql
-# Añadir claves foráneas
-# Claves foráneas para el trabajo de los empleados.
-ALTER TABLE `personal`.`employees`
-ADD CONSTRAINT `fk_employee_job` FOREIGN KEY (`id_job`) REFERENCES `personal`.`jobs` (`id_job`) ON DELETE CASCADE ON UPDATE CASCADE;
-# Claves foráneas para el área de los empleados.
-ALTER TABLE `personal`.`employees`
-ADD CONSTRAINT `fk_employee_area` FOREIGN KEY (`id_area`) REFERENCES `personal`.`areas` (`id_area`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-```
-
 ### Evidencia de ejecucion - Bloque 1
-
 Inserta aqui la captura de pantalla de la ejecucion del Bloque 1.
 
 ![Evidencia Bloque 1](assets/evidencia-bloque-1.png)
@@ -81,7 +44,6 @@ Inserta aqui la captura de pantalla de la ejecucion del Bloque 1.
 ---
 
 ## Bloque 2 - Creacion de tabla jobs
-
 ```sql
 CREATE TABLE `personal`.`jobs` (
   `id_job` int UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -91,7 +53,6 @@ CREATE TABLE `personal`.`jobs` (
 ```
 
 ### Evidencia de ejecucion - Bloque 2
-
 Inserta aqui la captura de pantalla de la ejecucion del Bloque 2.
 
 ![Evidencia Bloque 2](assets/evidencia-bloque-2.png)
@@ -99,17 +60,14 @@ Inserta aqui la captura de pantalla de la ejecucion del Bloque 2.
 ---
 
 ## Espacios para Bloques Siguientes
-
 Copia esta estructura para cada bloque adicional del script.
 
 ### [Titulo del bloque]
-
 ```sql
 -- Pega aqui el bloque de codigo correspondiente
 ```
 
 ### Evidencia de ejecucion - Bloque N
-
 Inserta aqui la captura de pantalla de la ejecucion del bloque.
 
 ![Evidencia Bloque N](assets/evidencia-bloque-n.png)
@@ -117,11 +75,9 @@ Inserta aqui la captura de pantalla de la ejecucion del bloque.
 ---
 
 ## Resultados Esperados
-
 - Las tablas principales deben crearse correctamente.
 - Los triggers deben registrar INSERT, UPDATE y DELETE en logs.
 - Deben existir evidencias de inserciones, actualizaciones y eliminaciones segun la practica.
 
 ## Conclusiones
-
 [Escribe aqui tus conclusiones finales de la practica.]
