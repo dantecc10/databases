@@ -29,16 +29,16 @@ USE dc;
 -- =====================================================
 -- 2) Crear tabla Datos_Personales
 -- =====================================================
-CREATE TABLE IF NOT EXISTS datos_personales (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nombre VARCHAR(100) NOT NULL,
-    apellido_p VARCHAR(100) NOT NULL,
-    apellido_m VARCHAR(100) NOT NULL,
-    PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS users (
+    id_user INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name_user VARCHAR(100) NOT NULL,
+    last_name_1_user VARCHAR(100) NOT NULL,
+    last_name_2_user VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id_user)
 );
 -- Verificacion rapida
 SHOW TABLES;
-DESCRIBE datos_personales;
+DESCRIBE users;
 -- =====================================================
 -- 3) Crear login/usuario inicial y probar permisos
 -- =====================================================
@@ -49,10 +49,10 @@ SHOW GRANTS FOR 'usr_dc_app' @'%';
 -- =====================================================
 -- 4) Asignar permisos para agregar y actualizar
 -- =====================================================
--- Permitir lectura, insercion y actualizacion en datos_personales
+-- Permitir lectura, insercion y actualizacion en users
 GRANT SELECT,
     INSERT,
-    UPDATE ON dc.datos_personales TO 'usr_dc_app' @'%';
+    UPDATE ON dc.users TO 'usr_dc_app' @'%';
 FLUSH PRIVILEGES;
 SHOW GRANTS FOR 'usr_dc_app' @'%';
 -- =====================================================
@@ -61,16 +61,16 @@ SHOW GRANTS FOR 'usr_dc_app' @'%';
 -- Estas pruebas debes ejecutarlas iniciando sesion como usr_dc_app.
 -- Debe funcionar:
 -- USE dc;
--- INSERT INTO datos_personales (nombre, apellido_p, apellido_m)
--- VALUES ('Dante', 'Castelan', 'Carpinteyro');
+-- INSERT INTO users (name_user, last_name_1_user, last_name_2_user)
+-- VALUES ('Dante', 'Castelán', 'Carpinteyro');
 -- Debe funcionar:
--- SELECT * FROM datos_personales;
+-- SELECT * FROM users;
 -- Debe funcionar:
--- UPDATE datos_personales
--- SET nombre = 'Dante A.'
--- WHERE id = 1;
+-- UPDATE users
+-- SET name_user = 'Dante A.'
+-- WHERE id_user = 1;
 -- Debe fallar (no tiene DELETE):
--- DELETE FROM datos_personales WHERE id = 1;
+-- DELETE FROM users WHERE id_user = 1;
 -- =====================================================
 -- 6) Crear segundo login/usuario y permisos DDL
 -- =====================================================
@@ -91,30 +91,30 @@ SHOW GRANTS FOR 'usr_dc_admin' @'%';
 -- =====================================================
 -- Ejecutar con usuario admin (o con un usuario con permisos equivalentes)
 USE dc;
-CREATE TABLE IF NOT EXISTS direccion (
-    id_direccion INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    id_persona INT UNSIGNED NOT NULL,
-    calle VARCHAR(150) NOT NULL,
-    numero VARCHAR(20) NOT NULL,
-    colonia VARCHAR(120) NOT NULL,
-    ciudad VARCHAR(120) NOT NULL,
-    estado VARCHAR(120) NOT NULL,
-    cp VARCHAR(10) NOT NULL,
-    PRIMARY KEY (id_direccion),
-    CONSTRAINT fk_direccion_persona FOREIGN KEY (id_persona) REFERENCES datos_personales(id) ON UPDATE CASCADE ON DELETE RESTRICT
+CREATE TABLE IF NOT EXISTS addresses (
+    id_address INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id_user INT UNSIGNED NOT NULL,
+    street_address VARCHAR(150) NOT NULL,
+    number_address VARCHAR(20) NOT NULL,
+    neighborhood_address VARCHAR(120) NOT NULL,
+    city_address VARCHAR(120) NOT NULL,
+    state_address VARCHAR(120) NOT NULL,
+    postal_code VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id_address),
+    CONSTRAINT fk_address_user FOREIGN KEY (id_user) REFERENCES users(id_user) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 -- Datos de ejemplo
-INSERT INTO datos_personales (nombre, apellido_p, apellido_m)
+INSERT INTO users (name_user, last_name_1_user, last_name_2_user)
 VALUES ('Ana', 'Lopez', 'Diaz'),
     ('Luis', 'Perez', 'Mora');
-INSERT INTO direccion (
-        id_persona,
-        calle,
-        numero,
-        colonia,
-        ciudad,
-        estado,
-        cp
+INSERT INTO addresses (
+        id_user,
+        street_address,
+        number_address,
+        neighborhood_address,
+        city_address,
+        state_address,
+        postal_code
     )
 VALUES (
         1,
@@ -135,46 +135,46 @@ VALUES (
         '72000'
     );
 SELECT *
-FROM datos_personales;
+FROM users;
 SELECT *
-FROM direccion;
+FROM addresses;
 -- =====================================================
--- 8) Modificar Datos_Personales y actualizar fecha_nacimiento
+-- 8) Modificar users y actualizar fecha_nacimiento
 -- =====================================================
-ALTER TABLE datos_personales
-ADD COLUMN fecha_nacimiento DATE NULL;
+ALTER TABLE users
+ADD COLUMN birthday DATE NULL;
 -- Este UPDATE debe ejecutarse con el usuario 1 (usr_dc_app),
 -- ya que se pidio actualizar con el primer login creado.
 -- Si no tiene permiso UPDATE en esta tabla, ajusta GRANT en bloque 4.
-UPDATE datos_personales
-SET fecha_nacimiento = '2000-01-01'
-WHERE id = 1;
-UPDATE datos_personales
-SET fecha_nacimiento = '1999-08-20'
-WHERE id = 2;
-SELECT id,
-    nombre,
-    fecha_nacimiento
-FROM datos_personales;
+UPDATE users
+SET birthday = '2000-01-01'
+WHERE id_user = 1;
+UPDATE users
+SET birthday = '1999-08-20'
+WHERE id_user = 2;
+SELECT id_user,
+    name_user,
+    birthday
+FROM users;
 -- =====================================================
 -- 9) Asignar lectura sobre direccion al primer login
 -- =====================================================
-GRANT SELECT ON dc.direccion TO 'usr_dc_app' @'%';
+GRANT SELECT ON dc.addresses TO 'usr_dc_app' @'%';
 FLUSH PRIVILEGES;
 SHOW GRANTS FOR 'usr_dc_app' @'%';
 -- Prueba final (con usr_dc_app):
 -- USE dc;
--- SELECT * FROM direccion;
+-- SELECT * FROM addresses;
 -- =====================================================
 -- 10) Consultas de evidencia sugeridas
 -- =====================================================
-SELECT 'datos_personales' AS tabla,
+SELECT 'users' AS table_name,
     COUNT(*) AS total
-FROM dc.datos_personales
+FROM dc.users
 UNION ALL
-SELECT 'direccion' AS tabla,
+SELECT 'addresses' AS table_name,
     COUNT(*) AS total
-FROM dc.direccion;
+FROM dc.addresses;
 -- Metadatos de usuarios
 SELECT user,
     host
