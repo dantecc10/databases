@@ -14,13 +14,42 @@ Documentar el diseño e implementación de un sistema de base de datos relaciona
 
 ## Descripción del Problema y Justificación
 
-### Contexto
-Los concursos de programación como el ICPC requieren un sistema robusto para gestionar múltiples aspectos simultáneamente:
-- Participantes de distintas universidades organizados en equipos
-- Problemas a resolver durante el concurso con límites de tiempo específicos
-- Envíos de soluciones en diferentes lenguajes de programación
-- Veredictos automatizados para cada envío (Accepted, Wrong Answer, Time Limit Exceeded, etc.)
-- Seguimiento temporal de todos los eventos del concurso
+### Contexto y Objetivos del Sistema
+Los concursos de programación competitiva bajo el modelo **ICPC (International Collegiate Programming Contest)** requieren un sistema robusto y confiable para gestionar la logística completa de la competencia. El sistema está diseñado para que un organizador o gestor pueda administrar de manera eficiente todos los aspectos de estas competencias.
+
+### Características Clave de la Competencia
+
+#### Estructura Temporal y de Contenido
+- **Duración estándar:** Cada concurso dura exactamente **5 horas (300 minutos)**.
+- **Catálogo de problemas:** Entre **12 a 14 problemas** alojados en una plataforma de juez automático, cada uno con sus propias especificaciones y límites de tiempo.
+- **Múltiples fechas competitivas:** El ICPC no es un evento único, sino un conjunto de competencias consecutivas durante el año:
+  - Primera, Segunda y Tercera Fechas (clasificatorios)
+  - Repechaje (segunda oportunidad)
+  - Final Mexicana
+  - Final Latinoamericana
+  - Final Mundial
+
+#### Estructura de Equipos y Participantes
+- Los participantes compiten en **equipos de 3 personas** sin acceso a internet ni herramientas de IA.
+- Cuentan únicamente con apuntes impresos durante la competencia.
+- Los equipos representan a **universidades específicas**, lo que hace crítico mantener vínculos institucionales para segmentar resultados y reconocimiento.
+
+#### Importancia Crítica de la Tabla Envio (Submissions)
+La tabla `Envio` es **fundamental** por razones funcionales y técnicas:
+
+**1. Procesamiento Secuencial (FIFO - First In, First Out)**
+- Cada envío se registra con la hora exacta (`hora_envio`) y el tiempo transcurrido desde el inicio del concurso (`tiempo_concurso`).
+- Esto permite procesar y calificar soluciones en el orden exacto en que fueron recibidas, manteniendo la integridad del proceso competitivo.
+
+**2. Congelamiento del Scoreboard (Freeze)**
+- A la hora 4 del concurso (minuto **240 de 300**), la tabla de posiciones pública se **pausa o congela**.
+- Los equipos continúan enviando soluciones, pero el scoreboard público no se actualiza.
+- Los equipos y público desconocen si los envíos posteriores fueron aceptados o rechazados hasta la ceremonia de premiación.
+- La tabla de envíos con campos `hora_envio` y `tiempo_concurso` permite:
+  - Identificar qué envíos ocurrieron antes del minuto 240 (visibles en scoreboard público).
+  - Identificar cuáles ocurrieron después (ocultos hasta la ceremonia).
+  - Simular o calcular dinámicamente este comportamiento en reportes post-competencia.
+  - Mantener un registro íntegro de todos los intentos para auditoría y análisis.
 
 ### Requerimiento Mínimo
 El proyecto cumple con el requerimiento mínimo de **8 tablas** relacionales, diseñadas para modelar completamente el dominio del problema.
@@ -197,10 +226,16 @@ CREATE TABLE Envio (
         REFERENCES Veredicto(id_veredicto)
 );
 ```
-**Propósito**: Registra cada intento de solución enviado, con timestamp y resultado.
+**Propósito**: Registra cada intento de solución enviado, con timestamp y resultado. Esta es la tabla más crítica del sistema.
+
 **Campos importantes**:
-- `tiempo_concurso`: Minutos transcurridos desde el inicio del concurso (usado en clasificaciones).
-- `hora_envio`: Timestamp exacto del envío para auditoría.
+- `tiempo_concurso`: Minutos transcurridos desde el inicio del concurso (0-300), crucial para implementar el congelamiento del scoreboard. Permite filtrar dinámicamente qué envíos son visibles (< 240) y cuáles están congelados (≥ 240).
+- `hora_envio`: Timestamp exacto del envío en el servidor, proporcionando auditoría completa e información para la ceremonia de premiación.
+
+**Importancia Técnica para el ICPC**:
+- El campo `tiempo_concurso < 240` es la clave para implementar el congelamiento del scoreboard público.
+- Permite que el sistema distinga entre envíos visibles públicamente durante la competencia y envíos ocultos hasta la ceremonia de premiación.
+- Junto con `id_veredicto`, facilita la generación de rankings en tiempo real (durante concurso) y finales (post-concurso con todos los envíos).
 
 ## Análisis de Normalización
 
@@ -224,16 +259,39 @@ Todas las tablas cumplen con 3FN:
 ### 1. Separación de Conceptos
 - **Lenguaje** y **Veredicto** se modelan como catálogos independientes, permitiendo agregar nuevos lenguajes o veredictos sin modificar la estructura de `Envio`.
 
-### 2. Temporalidad
-- Se registra tanto `hora_envio` (timestamp absoluto) como `tiempo_concurso` (tiempo relativo al inicio), permitiendo análisis de comportamiento temporal y auditoría.
+### 2. Temporalidad Dual: Soporte para el Congelamiento del Scoreboard
+La tabla `Envio` implementa un sistema de temporalidad dual que es fundamental para el ICPC:
+
+**`hora_envio` (timestamp absoluto)**
+- Registra la fecha y hora exacta del envío en el servidor.
+- Proporciona auditoría e información para investigaciones de integridad.
+
+**`tiempo_concurso` (tiempo relativo en minutos)**
+- Registra los minutos transcurridos desde el inicio del concurso (0 a 300).
+- Permite identificar automáticamente qué envíos ocurrieron antes del minuto 240 (visibles en el scoreboard público) y cuáles después (congelados).
+- Facilita la implementación de lógica FREEZE mediante una simple cláusula `WHERE tiempo_concurso < 240`.
+- Ejemplo de consulta para scoreboard público:
+  ```sql
+  SELECT * FROM Envio 
+  WHERE id_concurso = @concurso_id 
+    AND tiempo_concurso < 240  -- Antes del congelamiento
+    AND id_veredicto = (SELECT id_veredicto FROM Veredicto WHERE acronimo = 'AC');
+  ```
 
 ### 3. Escalabilidad
 - El modelo soporta múltiples concursos, equipos y universidades sin limitaciones estructurales.
 - Las claves foráneas garantizan que un concurso solo puede referenciar sus propios problemas.
+- La estructura permite registrar miles de envíos sin degradación de rendimiento.
 
 ### 4. Auditoría y Trazabilidad
-- Todos los envíos son inmutables (se espera que sean insertados una sola vez), lo que proporciona un registro completo del concurso.
+- Todos los envíos son inmutables (se espera que sean insertados una sola vez), lo que proporciona un registro completo y verificable del concurso.
 - La combinación de `id_equipo`, `id_problema`, `id_lenguaje`, `hora_envio` permite identificar unívocamente cada intento.
+- La estructura permite reconstruir completamente el estado del concurso en cualquier punto del tiempo.
+
+### 5. Vínculos Institucionales
+- La tabla `Universidad` es crítica para segmentar resultados por institución.
+- La relación `Equipo.id_universidad → Universidad.id_universidad` permite generar reportes institucionales y rankings por universidad.
+- Facilita la identificación de ganadores a nivel de institución, no solo individual.
 
 ## Próximos Pasos (Fuera del Alcance Actual)
 
