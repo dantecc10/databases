@@ -333,7 +333,7 @@ La tabla `Envio` implementa un sistema de temporalidad dual que es fundamental p
 - La relación `Equipo.id_universidad → Universidad.id_universidad` permite generar reportes institucionales y rankings por universidad.
 - Facilita la identificación de ganadores a nivel de institución, no solo individual.
 
-## Próximos Pasos (Fuera del Alcance Actual)
+## Próximos Pasos
 
 Para completar el proyecto según la rúbrica:
 1. **Procedimientos Almacenados**: Funciones operativas para calcular ranking, validar envíos, etc.
