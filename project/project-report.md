@@ -15,41 +15,31 @@ Documentar el diseño e implementación de un sistema de base de datos relaciona
 ## Descripción del Problema y Justificación
 
 ### Contexto y Objetivos del Sistema
-Los concursos de programación competitiva bajo el modelo **ICPC (International Collegiate Programming Contest)** requieren un sistema robusto y confiable para gestionar la logística completa de la competencia. El sistema está diseñado para que un organizador o gestor pueda administrar de manera eficiente todos los aspectos de estas competencias.
+En nuestra experiencia participando en concursos y clasificatorios en la BUAP, observamos que la gestión del scoreboard se hace muchas veces de forma manual. Esto ocurre especialmente en sedes donde compiten equipos de la BUAP junto con otras universidades: se usaban hojas, listas y varios archivos para llevar el conteo de envíos y resultados.
 
-### Características Clave de la Competencia
+El sistema busca facilitar al organizador la logística completa de un concurso de programación estilo ICPC, permitiendo administrar con orden:
+- universidades y equipos participantes,
+- integrantes de cada equipo,
+- concursos y su catálogo de problemas,
+- envíos de código en vivo con su tiempo y veredicto.
 
-#### Estructura Temporal y de Contenido
-- **Duración estándar:** Cada concurso dura exactamente **5 horas (300 minutos)**.
-- **Catálogo de problemas:** Entre **12 a 14 problemas** alojados en una plataforma de juez automático, cada uno con sus propias especificaciones y límites de tiempo.
-- **Múltiples fechas competitivas:** El ICPC no es un evento único, sino un conjunto de competencias consecutivas durante el año:
-  - Primera, Segunda y Tercera Fechas (clasificatorios)
-  - Repechaje (segunda oportunidad)
-  - Final Mexicana
-  - Final Latinoamericana
-  - Final Mundial
+### Planteamiento del Problema
+En el ámbito de la programación competitiva universitaria, organizar concursos y clasificatorios internos exige un control estricto de datos interconectados. Cuando la información se lleva de forma manual o dispersa, es común que se pierdan registros, se mezclen envíos y se compliquen las validaciones.
 
-#### Estructura de Equipos y Participantes
-- Los participantes compiten en **equipos de 3 personas** sin acceso a internet ni herramientas de IA.
-- Cuentan únicamente con apuntes impresos durante la competencia.
-- Los equipos representan a **universidades específicas**, lo que hace crítico mantener vínculos institucionales para segmentar resultados y reconocimiento.
+Sin un sistema centralizado es difícil:
+- asegurar que cada equipo tenga exactamente tres integrantes,
+- ligar cada envío con su equipo, problema y lenguaje correctos,
+- mantener un historial claro de concursos y evitar envíos huérfanos,
+- calcular el scoreboard en vivo y aplicar el congelamiento en el minuto 240.
 
-#### Importancia Crítica de la Tabla Envio (Submissions)
-La tabla `Envio` es **fundamental** por razones funcionales y técnicas:
+### Solución Propuesta
+Se propone el diseño de una Base de Datos Relacional normalizada hasta la Tercera Forma Normal (3FN), con al menos ocho entidades principales, que permita gestionar el ecosistema completo de un concurso ICPC.
 
-**1. Procesamiento Secuencial (FIFO - First In, First Out)**
-- Cada envío se registra con la hora exacta (`hora_envio`) y el tiempo transcurrido desde el inicio del concurso (`tiempo_concurso`).
-- Esto permite procesar y calificar soluciones en el orden exacto en que fueron recibidas, manteniendo la integridad del proceso competitivo.
-
-**2. Congelamiento del Scoreboard (Freeze)**
-- A la hora 4 del concurso (minuto **240 de 300**), la tabla de posiciones pública se **pausa o congela**.
-- Los equipos continúan enviando soluciones, pero el scoreboard público no se actualiza.
-- Los equipos y público desconocen si los envíos posteriores fueron aceptados o rechazados hasta la ceremonia de premiación.
-- La tabla de envíos con campos `hora_envio` y `tiempo_concurso` permite:
-  - Identificar qué envíos ocurrieron antes del minuto 240 (visibles en scoreboard público).
-  - Identificar cuáles ocurrieron después (ocultos hasta la ceremonia).
-  - Simular o calcular dinámicamente este comportamiento en reportes post-competencia.
-  - Mantener un registro íntegro de todos los intentos para auditoría y análisis.
+El modelo permitirá:
+- vincular de forma unívoca a los estudiantes con sus equipos y universidades,
+- llevar un catálogo histórico de concursos y problemas algorítmicos,
+- registrar cada envío de código y asociarlo con el equipo autor, el problema, el lenguaje y el veredicto del juez virtual (AC, WA, TLE, etc.),
+- proveer la infraestructura necesaria para automatizar el cálculo del scoreboard en vivo mediante vistas y funciones.
 
 ### Requerimiento Mínimo
 El proyecto cumple con el requerimiento mínimo de **8 tablas** relacionales, diseñadas para modelar completamente el dominio del problema.
@@ -74,6 +64,8 @@ Concurso 1 ──→ N Problema ──→ N Envio
                                └─ N Veredicto
 ```
 
+El diseño relacional mostrado es normalizado y refleja claramente la jerarquía del modelo de datos. La tabla transaccional central es `Envio`, y todas las relaciones son de tipo uno a muchos (1:N). Por ejemplo, una `Universidad` puede tener varios `Equipos`, y un `Equipo` puede tener varios `Concursantes`. El catálogo de `Concurso` agrupa sus respectivos `Problemas`, lo que evita que existan envíos huérfanos sin una relación válida.
+
 ### Entidades y Atributos
 
 | Entidad | Descripción | Atributos Clave |
@@ -86,6 +78,56 @@ Concurso 1 ──→ N Problema ──→ N Envio
 | **Lenguaje** | Lenguajes de programación permitidos | id_lenguaje, nombre |
 | **Veredicto** | Tipos de resultado posibles para un envío | id_veredicto, acronimo, descripcion |
 | **Envio** | Registro de cada intento de solución | id_envio, id_equipo, id_problema, id_lenguaje, id_veredicto, hora_envio, tiempo_concurso |
+
+## Diccionario de Datos
+A continuación se detallan las estructuras, tipos de datos y restricciones de cada entidad del sistema:
+
+- **Universidad**
+  - `id_universidad` INT IDENTITY(1,1) — PK
+  - `nombre` VARCHAR(100) NOT NULL
+  - `pais` VARCHAR(50) NOT NULL
+
+- **Equipo**
+  - `id_equipo` INT IDENTITY(1,1) — PK
+  - `nombre_equipo` VARCHAR(50) NOT NULL
+  - `id_universidad` INT NOT NULL — FK → Universidad(id_universidad)
+
+- **Concursante**
+  - `id_concursante` INT IDENTITY(1,1) — PK
+  - `nombre_completo` VARCHAR(100) NOT NULL
+  - `correo` VARCHAR(100) NOT NULL
+  - `id_equipo` INT NOT NULL — FK → Equipo(id_equipo)
+
+- **Concurso**
+  - `id_concurso` INT IDENTITY(1,1) — PK
+  - `nombre_evento` VARCHAR(100) NOT NULL
+  - `fecha_inicio` DATETIME NOT NULL
+  - `duracion_minutos` INT NOT NULL DEFAULT 300
+
+- **Problema**
+  - `id_problema` INT IDENTITY(1,1) — PK
+  - `id_concurso` INT NOT NULL — FK → Concurso(id_concurso)
+  - `letra` CHAR(1) NOT NULL
+  - `titulo` VARCHAR(100) NOT NULL
+  - `tiempo_limite` DECIMAL(5,2) NOT NULL
+
+- **Lenguaje**
+  - `id_lenguaje` INT IDENTITY(1,1) — PK
+  - `nombre` VARCHAR(20) NOT NULL
+
+- **Veredicto**
+  - `id_veredicto` INT IDENTITY(1,1) — PK
+  - `acronimo` VARCHAR(5) NOT NULL
+  - `descripcion` VARCHAR(50) NOT NULL
+
+- **Envio**
+  - `id_envio` INT IDENTITY(1,1) — PK
+  - `id_equipo` INT NOT NULL — FK → Equipo(id_equipo)
+  - `id_problema` INT NOT NULL — FK → Problema(id_problema)
+  - `id_lenguaje` INT NOT NULL — FK → Lenguaje(id_lenguaje)
+  - `id_veredicto` INT NOT NULL — FK → Veredicto(id_veredicto)
+  - `hora_envio` DATETIME NOT NULL
+  - `tiempo_concurso` INT NOT NULL
 
 ## Implementación
 
@@ -240,19 +282,17 @@ CREATE TABLE Envio (
 ## Análisis de Normalización
 
 ### Primera Forma Normal (1FN)
-Todas las tablas cumplen con 1FN:
-- ✅ Cada atributo contiene únicamente valores atómicos (no hay grupos repetitivos).
-- ✅ No existen atributos multivaluados.
+El diseño cumple con 1FN porque todos los atributos son atómicos y no hay grupos repetitivos. Por ejemplo, en la tabla `Concursante` no se guarda la lista de los tres integrantes de un equipo en un solo campo como "Juan, María, Pedro"; cada concursante es un registro independiente con su propia llave primaria `id_concursante`.
 
 ### Segunda Forma Normal (2FN)
-Todas las tablas cumplen con 2FN:
-- ✅ Todas las tablas están en 1FN.
-- ✅ Todos los atributos no clave dependen completamente de la clave primaria (no hay dependencias parciales).
+El diseño cumple con 2FN porque ya está en 1FN y todos los atributos no clave dependen completamente de la clave primaria de su tabla. En este modelo no usamos claves primarias compuestas: cada entidad tiene un identificador único simple e autoincremental (INT). Por ejemplo, `nombre_evento` en la tabla `Concurso` depende únicamente de `id_concurso`.
 
 ### Tercera Forma Normal (3FN)
-Todas las tablas cumplen con 3FN:
-- ✅ Todas las tablas están en 2FN.
-- ✅ No existen dependencias transitivas entre atributos no clave.
+El diseño cumple con 3FN porque, además de estar en 2FN, ningún atributo no clave depende de otro atributo no clave.
+
+Un ejemplo claro es la tabla `Envio`: no se almacena el nombre del lenguaje ni el acrónimo del veredicto directamente. En lugar de ello, `Envio` usa las llaves foráneas `id_lenguaje` y `id_veredicto`, lo que evita redundancia y facilita mantener los catálogos actualizados.
+
+Otro ejemplo es que `Envio` no incluye `id_concurso` como columna directa. Esta información se infiere a través de la relación con `Problema`: un envío pertenece a un problema, y ese problema pertenece a un concurso. Añadir `id_concurso` en `Envio` habría generado una dependencia transitiva y una forma de desnormalización que no es necesaria para el propósito académico de este proyecto.
 
 ## Decisiones de Diseño
 
