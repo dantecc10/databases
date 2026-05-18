@@ -4,7 +4,10 @@
 
 - Materia: Bases de Datos
 - Tipo: Proyecto Final (Diseño de Base de Datos Libre)
-- Alumno: Dante Castelán Carpinteyro
+- Alumnos:
+  - Dante Castelán Carpinteyro
+  - José Miguel Matrínez Martínez
+  - Osmar Hernandez
 - Fecha: 18 de mayo de 2026
 - Institución: Benemérita Universidad Autónoma de Puebla
 
