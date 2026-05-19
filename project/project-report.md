@@ -49,7 +49,7 @@ El proyecto cumple con el requerimiento mínimo de **8 tablas** relacionales, di
 
 ## Diseño de la Base de Datos
 
-### Modelo Entidad-Relación (Diagrama Conceptual)
+### Modelo Entidad-Relación
 
 El sistema está compuesto por las siguientes entidades y relaciones:
 
